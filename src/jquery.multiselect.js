@@ -83,13 +83,13 @@
       this.multiselectID = multiselectID++;
 
       // The button that opens the widget menu
-      var button = (this.button = $('<button type="button"><span class="ui-icon ui-icon-triangle-1-s"></span></button>'))
-        .addClass('ui-multiselect ui-widget ui-state-default ui-corner-all ' + o.classes)
+      var button = (this.button = $('<button type="button"><span class="icon icon-caret-down"></span></button>'))
+        .addClass('button button-ui-multiselect ' + o.classes)
         .attr({ 'title':el.attr('title'), 'tabIndex':el.attr('tabIndex'), 'id': el.attr('id') ? el.attr('id')  + '_ms' : null })
         .prop('aria-haspopup', true)
         .insertAfter(el);
 
-      this.buttonlabel = $('<span />')
+      this.buttonlabel = $('<span class="button-ui-multiselect-label" />')
         .html(o.noneSelectedText)
         .appendTo(button);
 
@@ -189,7 +189,7 @@
         liClasses.push(option.className);
       }
       if(isSelected && !o.multiple) {
-        labelClasses.push('ui-state-active');
+        labelClasses.push('ui-state-active active');
       }
 
       var $item = $("<li/>").addClass(liClasses.join(' '));
@@ -465,8 +465,8 @@
 
         // some additional single select-specific logic
         if(!self.options.multiple) {
-          self.labels.removeClass('ui-state-active');
-          $this.closest('label').toggleClass('ui-state-active', checked);
+          self.labels.removeClass('ui-state-active active');
+          $this.closest('label').toggleClass('ui-state-active active', checked);
 
           // close menu
           self.close();
@@ -774,7 +774,7 @@
       }
 
 
-      button.addClass('ui-state-active');
+      button.addClass('ui-state-active active');
       this._isOpen = true;
       this._trigger('open');
     },
@@ -801,7 +801,7 @@
       }
 
       $.fn.hide.apply(this.menu, args);
-      this.button.removeClass('ui-state-active').trigger('blur').trigger('mouseleave');
+      this.button.removeClass('ui-state-active active').trigger('blur').trigger('mouseleave');
       this._isOpen = false;
       this._trigger('close');
       this.button.trigger('focus');
